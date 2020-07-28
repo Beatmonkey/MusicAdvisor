@@ -1,0 +1,192 @@
+{
+  "playlists": {
+    "href": "https://api.spotify.com/v1/browse/categories/party/playlists?offset=5&limit=5",
+    "items": [
+      {
+        "collaborative": false,
+        "description": "The soundtrack to your motive with the finest hip hop sounds.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWVt4VCv1XXbY"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWVt4VCv1XXbY",
+        "id": "37i9dQZF1DWVt4VCv1XXbY",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f00000003a6a27400598851509f5d9ecc",
+            "width": null
+          }
+        ],
+        "name": "Motive",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": null,
+        "snapshot_id": "MTU5NTUzMjg2NywwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWVt4VCv1XXbY/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DWVt4VCv1XXbY"
+      },
+      {
+        "collaborative": false,
+        "description": "It's all about the girls tonight.",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX0Uv9tZ47pWo"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX0Uv9tZ47pWo",
+        "id": "37i9dQZF1DX0Uv9tZ47pWo",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f00000003955a83cb4667cf205fdf58eb",
+            "width": null
+          }
+        ],
+        "name": "Girls' Night",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": null,
+        "snapshot_id": "MTU5NTUzMjg1MCwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX0Uv9tZ47pWo/tracks",
+          "total": 80
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DX0Uv9tZ47pWo"
+      },
+      {
+        "collaborative": false,
+        "description": "Party anthems from the club to your ears!",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX5hHfOi73rY3"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX5hHfOi73rY3",
+        "id": "37i9dQZF1DX5hHfOi73rY3",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f0000000344a93914cbb4ec7ebbf8b802",
+            "width": null
+          }
+        ],
+        "name": "Warehouse Party",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": null,
+        "snapshot_id": "MTU5NTUzMjgxMCwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX5hHfOi73rY3/tracks",
+          "total": 50
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DX5hHfOi73rY3"
+      },
+      {
+        "collaborative": false,
+        "description": "The biggest old school anthems from your favourite nightclub spots!",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWWCAjkSJsi1g"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWWCAjkSJsi1g",
+        "id": "37i9dQZF1DWWCAjkSJsi1g",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f000000032af34377dd1db32556584271",
+            "width": null
+          }
+        ],
+        "name": "Room 2: Classics",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": null,
+        "snapshot_id": "MTU5NTUzMjgxMiwwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DWWCAjkSJsi1g/tracks",
+          "total": 100
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DWWCAjkSJsi1g"
+      },
+      {
+        "collaborative": false,
+        "description": "<a href=\"spotify:genre:edm_dance\">Dance radio</a> hits from the 90s and 00s!",
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DX8a1tdzq5tbM"
+        },
+        "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX8a1tdzq5tbM",
+        "id": "37i9dQZF1DX8a1tdzq5tbM",
+        "images": [
+          {
+            "height": null,
+            "url": "https://i.scdn.co/image/ab67706f00000003377cd62f388e2de7c3b2b08c",
+            "width": null
+          }
+        ],
+        "name": "Dance Classics",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://api.spotify.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": null,
+        "snapshot_id": "MTU5NTUzMjgyNywwMDAwMDAwMGQ0MWQ4Y2Q5OGYwMGIyMDRlOTgwMDk5OGVjZjg0Mjdl",
+        "tracks": {
+          "href": "https://api.spotify.com/v1/playlists/37i9dQZF1DX8a1tdzq5tbM/tracks",
+          "total": 120
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DX8a1tdzq5tbM"
+      }
+    ],
+    "limit": 5,
+    "next": "https://api.spotify.com/v1/browse/categories/party/playlists?offset=10&limit=5",
+    "offset": 5,
+    "previous": "https://api.spotify.com/v1/browse/categories/party/playlists?offset=0&limit=5",
+    "total": 35
+  }
+}

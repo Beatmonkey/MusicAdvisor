@@ -1,0 +1,366 @@
+type: edu
+custom_name: stage2
+files:
+- name: test/MusicAdvisorTest.java
+  visible: false
+  text: |
+    import advisor.Main;
+
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testcase.TestCase;
+
+    import java.util.List;
+    import java.util.function.Function;
+
+    class Attach {
+        Function<String, CheckResult> func;
+
+        Attach(Function<String, CheckResult> func) {
+            this.func = func;
+        }
+    }
+
+    public class MusicAdvisorTest extends StageTest<Attach> {
+        public MusicAdvisorTest() {
+            super(Main.class);
+        }
+
+        @Override
+        public List<TestCase<Attach>> generate() {
+            return List.of(
+                new TestCase<Attach>()
+                    .setInput("auth\nexit")
+                    .setAttach(new Attach(reply -> {
+                        if (!reply.contains("---SUCCESS---")) {
+                            return new CheckResult(false,
+                                "There is no \"---SUCCESS---\" after \"auth\" but should be");
+                        }
+                        if (!reply.contains("https://accounts.spotify.com/authorize?")) {
+                            return new CheckResult(false,
+                                "There is no link after \"auth\" but should be");
+                        }
+                        if (reply.contains("a19ee7dbfda443b2a8150c9101bfd645")) {
+                            return new CheckResult(false,
+                                    "You shouldn't use the client_id from the example!! " +
+                                            "You should create your own id on the spotify site.");
+                        }
+                        return CheckResult.correct();
+                    })),
+
+                new TestCase<Attach>()
+                    .setInput("new\nexit")
+                    .setAttach(new Attach(reply -> {
+                        if (!reply.strip().startsWith("Please, provide access for application.")) {
+                            return new CheckResult(false,
+                                "When no access provided you should output " +
+                                    "\"Please, provide access for application.\"");
+                        }
+                        return CheckResult.correct();
+                    })),
+
+                new TestCase<Attach>()
+                    .setInput("featured\nexit")
+                    .setAttach(new Attach(reply -> {
+                        if (!reply.strip().startsWith("Please, provide access for application.")) {
+                            return new CheckResult(false,
+                                "When no access provided you should output " +
+                                    "\"Please, provide access for application.\"");
+                        }
+                        return CheckResult.correct();
+                    })),
+
+                new TestCase<Attach>()
+                    .setInput("auth\nnew\nfeatured\nexit")
+                    .setAttach(new Attach(reply -> {
+                        if (!reply.contains("---NEW RELEASES---")) {
+                            return new CheckResult(false,
+                                "When \"new\" was inputted there should be \"---NEW RELEASES---\" line");
+                        }
+                        if (!reply.contains("---FEATURED---")) {
+                            return new CheckResult(false,
+                                "When \"featured\" was inputted there should be \"---FEATURED---\" line");
+                        }
+                        return CheckResult.correct();
+                    }))
+
+            );
+        }
+
+        @Override
+        public CheckResult check(String reply, Attach clue) {
+            return clue.func.apply(reply);
+        }
+    }
+  learner_created: false
+- name: build.gradle
+  visible: true
+  text: |-
+    apply plugin: 'java'
+    apply plugin: 'application'
+
+    group 'advisor'
+    version '1.0-SNAPSHOT'
+
+    sourceCompatibility = 11
+    mainClassName = 'advisor.Main'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile 'com.google.code.gson:gson:+'
+    }
+
+    jar {
+        manifest {
+            attributes 'Main-Class' : 'advisor.Main'
+        }
+        from {
+            configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        }
+    }
+  learner_created: true
+- name: src/advisor/Main.java
+  visible: true
+  text: |+
+    package advisor;
+
+    import java.util.*;
+
+    public class Main {
+        public static void main(String[] args) {
+
+            NewReleases newReleases = new NewReleases();
+            newReleases.addNewReleases("Mountains [Sia, Diplo, Labrinth]");
+            newReleases.addNewReleases("Runaway [Lil Peep]");
+            newReleases.addNewReleases("The Greatest Show [Panic! At The Disco]");
+            newReleases.addNewReleases("All Out Life [Slipknot]");
+
+            Featured featured = new Featured();
+            featured.addFeatured("Mellow Morning");
+            featured.addFeatured("Wake Up and Smell the Coffee");
+            featured.addFeatured("Monday Motivation");
+            featured.addFeatured("Songs to Sing in the Shower");
+
+            Categories categories = new Categories();
+            categories.addCategory("Top List");
+            categories.addCategory("Pop");
+            categories.addCategory("Mood");
+            categories.addCategory("Latin");
+
+            Playlists playlists = new Playlists();
+            playlists.addPlaylist("Walk Like A Badass");
+            playlists.addPlaylist("Rage Beats");
+            playlists.addPlaylist("Arab Mood Booster");
+            playlists.addPlaylist("Sunday Stroll");
+
+
+            MusicLibrary musicLibrary = new MusicLibrary(newReleases, featured, categories, playlists);
+            UserInteraction userInteraction = new UserInteraction(musicLibrary);
+            userInteraction.menu();
+
+
+        }
+    }
+
+    class UserInteraction {
+
+        MusicLibrary musicLibrary;
+
+        UserInteraction(MusicLibrary musicLibrary) {
+            this.musicLibrary = musicLibrary;
+
+        }
+
+        void menu() {
+            Scanner scanner = new Scanner(System.in);
+            boolean isActionZero = false;
+
+
+            while (!isActionZero) {
+                String[] action = scanner.nextLine().split(" ");
+
+                switch (action[0]) {
+                    case "new": {
+                        showNewReleases(action[0]);
+                        break;
+                    }
+                    case "featured": {
+                        showFeatured(action[0]);
+                        break;
+                    }
+                    case "categories": {
+                        showCategories(action[0]);
+                        break;
+                    }
+                    case "playlists": {
+                        String input = (action[0] + " " + action[1]);
+                        showPlaylists(input);
+                        break;
+                    }
+                    case "exit": {
+                        System.out.println("---GOODBYE!---");
+                        isActionZero = true;
+                        break;
+                    }
+                    default: {
+                        System.out.println("Incorrect command!");
+                    }
+                }
+            }
+
+        }
+
+        void showNewReleases(String input) {
+            System.out.println("---NEW RELEASES---");
+            for (String release : musicLibrary.getEntity(input)) {
+                System.out.println(release);
+            }
+
+
+        }
+
+        void showFeatured(String input) {
+            System.out.println("---FEATURED---");
+            for (String feature : musicLibrary.getEntity(input)) {
+                System.out.println(feature);
+            }
+        }
+
+        void showCategories(String input) {
+            System.out.println("---CATEGORIES---");
+            for (String category : musicLibrary.getEntity(input)) {
+                System.out.println(category);
+            }
+
+        }
+
+        void showPlaylists(String input) {
+            String[] config = input.split(" ");
+            String formattedString = String.format("---%s PLAYLISTS---", config[1].toUpperCase());
+            System.out.println(formattedString);
+
+            for (String playlist : musicLibrary.getEntity(config[0])) {
+                System.out.println(playlist);
+            }
+
+        }
+
+
+    }
+
+    class MusicLibrary {
+
+        NewReleases newReleases;
+        Featured featured;
+        Categories categories;
+        Playlists playlists;
+
+        MusicLibrary(NewReleases newReleases, Featured featured, Categories categories, Playlists playlists) {
+            this.newReleases = newReleases;
+            this.featured = featured;
+            this.categories = categories;
+            this.playlists = playlists;
+
+        }
+
+
+        List<String> getEntity(String input) {
+            if (input.equalsIgnoreCase("new")) {
+                return newReleases.getNewReleases();
+            } else if (input.equalsIgnoreCase("featured")) {
+                return featured.getFeatured();
+            } else if (input.equalsIgnoreCase("categories")) {
+                return categories.getCategories();
+            } else if (input.equalsIgnoreCase("playlists")) {
+                return playlists.getPlaylists();
+            } else {
+                return null;
+            }
+        }
+
+    }
+
+    class NewReleases {
+
+        List<String> newReleases;
+
+        NewReleases() {
+            this.newReleases = new ArrayList<>();
+        }
+
+        List<String> addNewReleases(String release) {
+            newReleases.add(release);
+
+            return newReleases;
+        }
+
+        public List<String> getNewReleases() {
+            return newReleases;
+        }
+    }
+
+    class Featured {
+
+        List<String> featured;
+
+        Featured() {
+            this.featured = new ArrayList<>();
+        }
+
+        List<String> addFeatured(String feature) {
+            featured.add(feature);
+
+            return featured;
+        }
+
+        public List<String> getFeatured() {
+            return featured;
+        }
+    }
+
+    class Categories {
+
+        List<String> categories;
+
+        Categories() {
+            this.categories = new ArrayList<>();
+        }
+
+        List<String> addCategory(String category) {
+            categories.add(category);
+
+            return categories;
+        }
+
+        public List<String> getCategories() {
+            return categories;
+        }
+    }
+
+    class Playlists {
+
+        List<String> playlists;
+
+        Playlists() {
+            this.playlists = new ArrayList<>();
+        }
+
+        List<String> addPlaylist(String playlist) {
+            playlists.add(playlist);
+
+            return playlists;
+        }
+
+        public List<String> getPlaylists() {
+            return playlists;
+        }
+    }
+
+
+  learner_created: true
+feedback_link: https://hyperskill.org/projects/62/stages/336/implement
+status: Solved
+record: 1

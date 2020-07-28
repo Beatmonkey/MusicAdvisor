@@ -1,0 +1,44 @@
+[1;31m
+Start test 1[0m
+> auth
+*use this link to request the access code:
+‚http://127.0.0.1:45678/authorize?client_id=fc2c20a7573e4717a3e51b174cd46d5b&redirect_uri=http://localhost:8080&response_type=code
+waiting for code...
+?Tester: making requests to redirect uri: http://localhost:8080
+Empty response
+ATester: done request 1: Not found authorization code. Try again.
+Code isn't received
+ATester: done request 2: Not found authorization code. Try again.
+Code received
+(making http request for access_token...
+CTester: done request 3: Got the code. Return back to your program.
+456456
+---SUCCESS---
+> exit
+Incorrect Transition!
+[1;31m
+Start test 2[0m
+> auth
+*use this link to request the access code:
+‚http://127.0.0.1:45678/authorize?client_id=fc2c20a7573e4717a3e51b174cd46d5b&redirect_uri=http://localhost:8080&response_type=code
+waiting for code...
+?Tester: making requests to redirect uri: http://localhost:8080
+Empty response
+ATester: done request 1: Not found authorization code. Try again.
+Code isn't received
+ATester: done request 2: Not found authorization code. Try again.
+Code received
+(making http request for access_token...
+CTester: done request 3: Got the code. Return back to your program.
+456456
+---SUCCESS---
+> new
+Runnin'
+[Pharrell Williams]
+6https://open.spotify.com/album/5ZX4m5aVSmWQ5iHAPQpT71
+
+	Sneakin'
+	[Drake2]
+6https://open.spotify.com/album/0geTzdk2InlqIoB16fW9Nd
+
+---PAGE 1 OF 0---
