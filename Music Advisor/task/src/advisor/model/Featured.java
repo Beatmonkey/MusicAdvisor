@@ -1,6 +1,13 @@
 package advisor.model;
 
-public class Featured {
+import java.util.List;
+
+public class Featured extends SpotifyObject{
     public String name;
     public String href;
+
+    @Override
+    List<String> test() {
+        return null;
+    }
 }

@@ -1,6 +1,6 @@
 package advisor.model;
 
-public class NewRelease {
+public class NewRelease extends SpotifyObject{
 
     public String name;
     public String artist;

@@ -16,4 +16,8 @@ public class Paging {
         this.limit = limit;
 
     }
+
+    public Paging(int total) {
+        this.total = total;
+    }
 }

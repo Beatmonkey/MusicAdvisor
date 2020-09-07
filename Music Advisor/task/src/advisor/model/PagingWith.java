@@ -8,4 +8,8 @@ public class PagingWith<T> {
         this.list = list;
         this.paging = paging;
     }
+
+    public Paging getPaging() {
+        return this.paging;
+    }
 }

@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Main {
 
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, IllegalAccessException {
 
         ApplicationSettings applicationSettings = new ApplicationSettings();
 
@@ -24,11 +24,8 @@ public class Main {
                 applicationSettings.apiServerPath = args[i + 1];
             }
             if (args[i].equals("-page")) {
-                if (args[i + 1].isEmpty()) {
-                    applicationSettings.limit = "5";
-                } else {
-                    applicationSettings.limit = args[i + 1];
-                }
+                applicationSettings.limit = Integer.valueOf(args[i + 1]);
+
             }
         }
 

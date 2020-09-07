@@ -22,15 +22,19 @@ public class MusicLibraryService {
     }
 
     public Result<PagingWith<List<NewRelease>>> getNewReleases() {
-        String uri = applicationSettings.apiServerPath + "/v1/browse/new-releases?offset=0&limit=" + applicationSettings.limit;
+        String uri = applicationSettings.apiServerPath + "/v1/browse/new-releases?";
         return getNewReleasesByURI(uri);
     }
 
     public Result<PagingWith<List<NewRelease>>> getNewReleasesByURI(String uri) {
         JsonObject jo = restService.getJsonObject(uri).getAsJsonObject("albums");
+
+//        JsonObject jo = NewReleasesTest.joTest.getAsJsonObject("albums");
+
         JsonArray items = jo.getAsJsonArray("items");
         List<NewRelease> newReleases = new ArrayList<>();
-        Paging pagingData = getPagingData(jo);
+
+        int total = 0;
 
         for (JsonElement release : items) {
             NewRelease newRelease = new NewRelease();
@@ -46,52 +50,66 @@ public class MusicLibraryService {
             newRelease.href = release.getAsJsonObject().get("external_urls").getAsJsonObject().get("spotify").getAsString();
 
             newReleases.add(newRelease);
+            total++;
         }
+
+        Paging pagingData = new Paging(total);
+
 
         return Result.successful(new PagingWith<>(newReleases, pagingData));
     }
 
 
-
     public Result<PagingWith<List<Featured>>> getFeatured() {
-        String uri = applicationSettings.apiServerPath + "/v1/browse/featured-playlists?offset=0&limit=" + applicationSettings.limit;
+        String uri = applicationSettings.apiServerPath + "/v1/browse/featured-playlists?";
         return getFeaturedByURI(uri);
 
     }
 
     public Result<PagingWith<List<Featured>>> getFeaturedByURI(String uri) {
         JsonObject jo = restService.getJsonObject(uri).getAsJsonObject("playlists");
+
+//        JsonObject jo = NewReleasesTest.joTestNewfeat.getAsJsonObject("playlists");
+
+
         JsonArray items = jo.getAsJsonArray("items");
         List<Featured> featuredList = new ArrayList<>();
-        Paging pagingData = getPagingData(jo);
 
+
+        int total = 0;
         for (JsonElement featured : items) {
             Featured fe = new Featured();
             fe.name = featured.getAsJsonObject().get("name").getAsString();
-            fe.href = featured.getAsJsonObject().get("href").getAsString();
+            fe.href = featured.getAsJsonObject().get("external_urls").getAsJsonObject().get("spotify").getAsString();
             featuredList.add(fe);
+            total++;
         }
+        Paging pagingData = new Paging(total);
 
         return Result.successful(new PagingWith<>(featuredList, pagingData));
     }
 
     public Result<PagingWith<List<Category>>> getCategories() {
-        String uri = applicationSettings.apiServerPath + "/v1/browse/categories?offset=0&limit=" + applicationSettings.limit;
+        String uri = applicationSettings.apiServerPath + "/v1/browse/categories?";
         return getCategoriesByURI(uri);
 
     }
 
     public Result<PagingWith<List<Category>>> getCategoriesByURI(String uri) {
         JsonObject jo = restService.getJsonObject(uri).getAsJsonObject("categories");
+
         JsonArray items = jo.getAsJsonArray("items");
         List<Category> categories = new ArrayList<>();
-        Paging pagingData = getPagingData(jo);
 
+
+        int total = 0;
         for (JsonElement category : items) {
             Category cat = new Category();
             cat.name = category.getAsJsonObject().get("name").getAsString();
             categories.add(cat);
+            total++;
         }
+        Paging pagingData = new Paging(total);
 
         return Result.successful(new PagingWith<>(categories, pagingData));
     }
@@ -110,38 +128,43 @@ public class MusicLibraryService {
     }
 
 
-    public Result<PagingWith<List<Playlist>>> getPlaylistsByName(String playlistName) {
+    public Result<PagingWith<List<? extends SpotifyObject>>> getPlaylistsByName(String playlistName) {
 
         String categoryId = getCategoryId(playlistName);
         if (categoryId == null) {
-            System.out.println("Unknown category name.");
-            return Result.successful(new PagingWith<>(null, null));
+            return null;
         } else {
-            String uri = applicationSettings.apiServerPath + "/v1/browse/categories/" + categoryId + "/playlists?offset=0&limit=" + applicationSettings.limit;
+            String uri = applicationSettings.apiServerPath + "/v1/browse/categories/" + categoryId + "/playlists?";
             return getPlaylistsByURI(uri);
         }
     }
 
-    public Result<PagingWith<List<Playlist>>> getPlaylistsByURI(String uri) {
+    public Result<PagingWith<List<? extends SpotifyObject>>> getPlaylistsByURI(String uri) {
 
         JsonObject jo = restService.getJsonObject(uri);
+
 
         if (jo.has("playlists")) {
             jo = jo.getAsJsonObject("playlists");
             List<Playlist> playlists = new ArrayList<>();
             var items = jo.getAsJsonArray("items");
 
-            Paging pagingData = getPagingData(jo);
+
+            int total = 0;
             for (JsonElement playlist : items) {
                 Playlist p = new Playlist();
 
                 JsonObject playlistJson = playlist.getAsJsonObject();
-                p.id = playlistJson.get("id").getAsString();
-                p.description = playlistJson.get("description").getAsString();
+//                p.id = playlistJson.get("id").getAsString();
+//                p.description = playlistJson.get("description").getAsString();
                 p.name = playlistJson.get("name").getAsString();
-                p.href = playlistJson.get("href").getAsString();
+                p.href = playlistJson.get("external_urls").getAsJsonObject().get("spotify").getAsString();
                 playlists.add(p);
+                total++;
             }
+
+            Paging pagingData = new Paging(total);
+
             return Result.successful(new PagingWith<>(playlists, pagingData));
         } else {
             Error error = new Error();
@@ -178,25 +201,22 @@ public class MusicLibraryService {
     public void auth(AuthCallback authCallback) {
         try {
             SimpleHttpServer server = new SimpleHttpServer(applicationSettings);
-            server.requestCode(new AuthCallback() {
-                @Override
-                public void call(int status) {
-                    if (status == 1) {
-                        System.out.println("Code received");
-                        String accessToken = restService.getAccessToken();
-                        if (accessToken != null) {
-                            applicationSettings.accessToken = accessToken;
-                            applicationSettings.isAuthorized = true;
-                            authCallback.call(status);
-                        } else {
-                            applicationSettings.isAuthorized = false;
-//                            authCallback.accept(false);
-                        }
-                    } else if (status == 0) {
-                        System.out.println("Empty response");
+            server.requestCode(status -> {
+                if (status == 1) {
+                    System.out.println("Code received");
+                    String accessToken = restService.getAccessToken();
+                    if (accessToken != null) {
+                        applicationSettings.accessToken = accessToken;
+                        applicationSettings.isAuthorized = true;
+                        authCallback.call(status);
                     } else {
-                        System.out.println("Code isn't received");
+                        applicationSettings.isAuthorized = false;
+//                            authCallback.accept(false);
                     }
+                } else if (status == 0) {
+                    System.out.println("Empty response");
+                } else {
+                    System.out.println("Code isn't received");
                 }
             });
 

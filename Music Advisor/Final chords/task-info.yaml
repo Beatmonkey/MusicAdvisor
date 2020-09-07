@@ -853,44 +853,19 @@ files:
 - name: src/advisor/model/NewRelease.java
   visible: true
   learner_created: true
+- name: src/advisor/model/NewReleasesTest.java
+  visible: true
+  learner_created: true
+- name: src/advisor/controller/PrintService.java
+  visible: true
+  learner_created: true
+- name: src/advisor/model/SpotifyObject.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/62/stages/339/implement
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #2
-
-    Album from page 2 appeared on page 1 on &quot;new&quot; action
-
-    Please find below the output of your program during this failed test.
-    Note that the &#39;&gt;&#39; character indicates the beginning of the input line.
-
-    ---
-
-    Arguments: -access http://127.0.0.1:45678 -resource http://127.0.0.1:56789 -page 1
-
-    &gt; auth
-    use this link to request the access code:
-    http://127.0.0.1:45678/authorize?client_id=fc2c20a7573e4717a3e51b174cd46d5b&amp;redirect_uri=http://localhost:8080&amp;response_type=code
-    waiting for code...
-    Tester: making requests to redirect uri: http://localhost:8080
-    Empty response
-    Tester: done request 1: Not found authorization code. Try again.
-    Code isn&#39;t received
-    Tester: done request 2: Not found authorization code. Try again.
-    Code received
-    making http request for access_token...
-    Tester: done request 3: Got the code. Return back to your program.
-    456456
-    ---SUCCESS---
-    &gt; new
-    Runnin&#39;
-    [Pharrell Williams]
-    https://open.spotify.com/album/5ZX4m5aVSmWQ5iHAPQpT71
-
-    Sneakin&#39;
-    [Drake2]
-    https://open.spotify.com/album/0geTzdk2InlqIoB16fW9Nd
-
-    ---PAGE 1 OF 0---
-  time: Tue, 28 Jul 2020 19:37:58 UTC
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/62/stages/339/implement">JetBrains
+    Academy</a>
+  time: Wed, 26 Aug 2020 10:50:01 UTC
 record: -1

@@ -29,7 +29,7 @@
 </td>
 <td>
 <div class="infoBox" id="failures">
-<div class="counter">1</div>
+<div class="counter">0</div>
 <p>failures</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.469s</div>
+<div class="counter">2.703s</div>
 <p>duration</p>
 </div>
 </td>
@@ -50,8 +50,8 @@
 </div>
 </td>
 <td>
-<div class="infoBox failures" id="successRate">
-<div class="percent">0%</div>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
 <p>successful</p>
 </div>
 </td>
@@ -61,111 +61,13 @@
 <div id="tabs">
 <ul class="tabLinks">
 <li>
-<a href="#tab0">Failed tests</a>
+<a href="#tab0">Tests</a>
 </li>
 <li>
-<a href="#tab1">Tests</a>
-</li>
-<li>
-<a href="#tab2">Standard output</a>
+<a href="#tab1">Standard output</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
-<h2>Failed tests</h2>
-<div class="test">
-<a name="start"></a>
-<h3 class="failures">start</h3>
-<span class="code">
-<pre>java.lang.AssertionError: Wrong answer in test #2
-
-Album from page 2 appeared on page 1 on &quot;new&quot; action
-
-Please find below the output of your program during this failed test.
-Note that the '&gt;' character indicates the beginning of the input line.
-
----
-
-Arguments: -access http://127.0.0.1:45678 -resource http://127.0.0.1:56789 -page 1
-
-&gt; auth
-use this link to request the access code:
-http://127.0.0.1:45678/authorize?client_id=fc2c20a7573e4717a3e51b174cd46d5b&amp;redirect_uri=http://localhost:8080&amp;response_type=code
-waiting for code...
-Tester: making requests to redirect uri: http://localhost:8080
-Empty response
-Tester: done request 1: Not found authorization code. Try again.
-Code isn't received
-Tester: done request 2: Not found authorization code. Try again.
-Code received
-making http request for access_token...
-Tester: done request 3: Got the code. Return back to your program.
-456456
----SUCCESS---
-&gt; new
-Runnin'
-[Pharrell Williams]
-https://open.spotify.com/album/5ZX4m5aVSmWQ5iHAPQpT71
-
-Sneakin'
-[Drake2]
-https://open.spotify.com/album/0geTzdk2InlqIoB16fW9Nd
-
----PAGE 1 OF 0---
-	at org.junit.Assert.fail(Assert.java:88)
-	at org.hyperskill.hstest.stage.StageTest.start(StageTest.java:103)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:110)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
-	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:62)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:118)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:175)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:157)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-	at java.base/java.lang.Thread.run(Thread.java:834)
-</pre>
-</span>
-</div>
-</div>
-<div id="tab1" class="tab">
 <h2>Tests</h2>
 <table>
 <thead>
@@ -176,13 +78,13 @@ https://open.spotify.com/album/0geTzdk2InlqIoB16fW9Nd
 </tr>
 </thead>
 <tr>
-<td class="failures">start</td>
-<td class="failures">1.469s</td>
-<td class="failures">failed</td>
+<td class="success">start</td>
+<td class="success">2.703s</td>
+<td class="success">passed</td>
 </tr>
 </table>
 </div>
-<div id="tab2" class="tab">
+<div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
 <pre>?[1;31m
@@ -223,12 +125,114 @@ Tester: done request 3: Got the code. Return back to your program.
 Runnin'
 [Pharrell Williams]
 https://open.spotify.com/album/5ZX4m5aVSmWQ5iHAPQpT71
-
+---PAGE 1 OF 2---
+&gt; prev
+No more pages.
+&gt; next
 Sneakin'
 [Drake2]
 https://open.spotify.com/album/0geTzdk2InlqIoB16fW9Nd
-
----PAGE 1 OF 0---
+---PAGE 2 OF 2---
+&gt; next
+No more pages.
+&gt; prev
+Runnin'
+[Pharrell Williams]
+https://open.spotify.com/album/5ZX4m5aVSmWQ5iHAPQpT71
+---PAGE 1 OF 2---
+&gt; exit
+Incorrect Transition!
+?[1;31m
+Start test 3?[0m
+&gt; auth
+use this link to request the access code:
+http://127.0.0.1:45678/authorize?client_id=fc2c20a7573e4717a3e51b174cd46d5b&amp;redirect_uri=http://localhost:8080&amp;response_type=code
+waiting for code...
+Tester: making requests to redirect uri: http://localhost:8080
+Empty response
+Tester: done request 1: Not found authorization code. Try again.
+Code isn't received
+Tester: done request 2: Not found authorization code. Try again.
+Code received
+making http request for access_token...
+Tester: done request 3: Got the code. Return back to your program.
+456456
+---SUCCESS---
+&gt; categories
+Top Lists
+---PAGE 1 OF 3---
+&gt; next
+Super Mood
+---PAGE 2 OF 3---
+&gt; next
+Party Time
+---PAGE 3 OF 3---
+&gt; prev
+Super Mood
+---PAGE 2 OF 3---
+&gt; prev
+Top Lists
+---PAGE 1 OF 3---
+?[1;31m
+Start test 4?[0m
+&gt; auth
+use this link to request the access code:
+http://127.0.0.1:45678/authorize?client_id=fc2c20a7573e4717a3e51b174cd46d5b&amp;redirect_uri=http://localhost:8080&amp;response_type=code
+waiting for code...
+Tester: making requests to redirect uri: http://localhost:8080
+Empty response
+Tester: done request 1: Not found authorization code. Try again.
+Code isn't received
+Tester: done request 2: Not found authorization code. Try again.
+Code received
+making http request for access_token...
+Tester: done request 3: Got the code. Return back to your program.
+456456
+---SUCCESS---
+&gt; featured
+Monday Morning Mood
+http://open.spotify.com/user/spotify/playlist/6ftJBzU2LLQcaKefMi7ee7
+---PAGE 1 OF 2---
+&gt; next
+Upp och hoppa!
+http://open.spotify.com/user/spotify__sverige/playlist/4uOEx4OUrkoGNZoIlWMUbO
+---PAGE 2 OF 2---
+&gt; prev
+Monday Morning Mood
+http://open.spotify.com/user/spotify/playlist/6ftJBzU2LLQcaKefMi7ee7
+---PAGE 1 OF 2---
+&gt; exit
+Incorrect Transition!
+?[1;31m
+Start test 5?[0m
+&gt; auth
+use this link to request the access code:
+http://127.0.0.1:45678/authorize?client_id=fc2c20a7573e4717a3e51b174cd46d5b&amp;redirect_uri=http://localhost:8080&amp;response_type=code
+waiting for code...
+Tester: making requests to redirect uri: http://localhost:8080
+Empty response
+Tester: done request 1: Not found authorization code. Try again.
+Code isn't received
+Tester: done request 2: Not found authorization code. Try again.
+Code received
+making http request for access_token...
+Tester: done request 3: Got the code. Return back to your program.
+456456
+---SUCCESS---
+&gt; playlists Party Time
+Noite Eletronica
+http://open.spotify.com/user/spotifybrazilian/playlist/4k7EZPI3uKMz4aRRrLVfen
+---PAGE 1 OF 2---
+&gt; next
+Festa Indie
+http://open.spotify.com/user/spotifybrazilian/playlist/4HZh0C9y80GzHDbHZyX770
+---PAGE 2 OF 2---
+&gt; prev
+Noite Eletronica
+http://open.spotify.com/user/spotifybrazilian/playlist/4k7EZPI3uKMz4aRRrLVfen
+---PAGE 1 OF 2---
+&gt; exit
+Incorrect Transition!
 </pre>
 </span>
 </div>
@@ -240,7 +244,7 @@ https://open.spotify.com/album/0geTzdk2InlqIoB16fW9Nd
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 5.3.1</a> at 28 июл. 2020 г., 23:02:34</p>
+<a href="http://www.gradle.org">Gradle 5.3.1</a> at 26 авг. 2020 г., 13:50:01</p>
 </div>
 </div>
 </body>

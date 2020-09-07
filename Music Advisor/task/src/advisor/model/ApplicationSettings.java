@@ -10,7 +10,7 @@ public class ApplicationSettings {
     public String siteUrl = "https://accounts.spotify.com";
     public String code = "";
 
-    public String limit = "1";
+    public int limit = 5;
 
 
 

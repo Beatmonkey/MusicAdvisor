@@ -1,9 +1,9 @@
 package advisor.model;
 
-public class Playlist {
+public class Playlist extends SpotifyObject {
 
-    public String id;
-    public String description;
+//    public String id;
+//    public String description;
     public String name;
     public String href;
 

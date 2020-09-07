@@ -6,7 +6,7 @@ import java.util.List;
  */
 
 
-/*class Bakery {}
+class Bakery {}
 
 class Cake extends Bakery {}
 
@@ -29,7 +29,7 @@ class NaiveQualityControl {
         return true;
     }
 
-}*/
+}
 
 class Violator {
 
@@ -38,11 +38,6 @@ class Violator {
         List<Box<? extends Bakery>> boxes = new ArrayList<>();
         Box box = new Box();
         Paper paper = new Paper();
-/*        for (Box box : boxes) {
-            box = new Box();
-            box.put(paper);
-        }
-        */
         box.put(paper);
         boxes.add(box);
 
@@ -52,7 +47,6 @@ class Violator {
 
 }
 
-/*
 class Main {
     public static void main(String[] args) {
         Cake cake = new Cake();
@@ -68,4 +62,4 @@ class Main {
         NaiveQualityControl naiveQualityControl = new NaiveQualityControl();
         naiveQualityControl.check(Violator.defraud());
     }
-}*/
+}
